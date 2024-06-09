@@ -23,7 +23,7 @@ export const useJsonFetch = (url, opts) => {
         setError(err);
         setIsLoading(false);
       });
-    }, 5000);
+    }, 100);
   }
   useEffect(loadData, [url, opts]); // componentDidMount
 
