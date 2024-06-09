@@ -25,7 +25,7 @@ export const useJsonFetch = (url, opts) => {
       });
     }, 2000);
   }
-  useEffect(loadData); // componentDidMount
+  useEffect(loadData, [url, opts]); // componentDidMount
 
   return [data, error, isLoading];
 }
