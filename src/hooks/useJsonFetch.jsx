@@ -7,10 +7,10 @@ export const useJsonFetch = (url, opts) => {
 const timestampRef = useRef(0);
 
   function loadData(){
+     timestampRef.current = Date.now();
   
     setTimeout(() => {
-      timestampRef.current = Date.now();
-    fetch(url, opts)
+     fetch(url, opts)
       .then((response) => {
         return response.json();
       })
