@@ -1,9 +1,8 @@
 //import { useState } from 'react'
-import './App.css'
-import { useJsonFetch } from './hooks/useJsonFetch'
+import "./App.css";
+import { useJsonFetch } from "./hooks/useJsonFetch";
 
 function App() {
-
   const [data, error, isLoading] = useJsonFetch("http://localhost:7071/data", {
     method: "GET",
     headers: {
@@ -36,11 +35,15 @@ function App() {
     <>
       {data !== null && JSON.stringify(data) ? JSON.stringify(data) : "loading"}
       <br />
-      {data2 !== null && JSON.stringify(data2) ? JSON.stringify(data2) : "loading"}
+      {data2 !== null && JSON.stringify(data2)
+        ? JSON.stringify(data2)
+        : "loading"}
       <br />
-      {data3 !== null && JSON.stringify(data3) ? JSON.stringify(data3) : "loading"}
+      {data3 !== null && JSON.stringify(data3)
+        ? JSON.stringify(data3)
+        : "loading"}
     </>
   );
 }
 
-export default App
+export default App;
