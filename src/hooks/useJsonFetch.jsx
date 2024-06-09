@@ -4,10 +4,10 @@ export const useJsonFetch = (url, opts) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const timestampRef = useRef(0);
+const timestampRef = useRef(0);
 
   function loadData(){
-    setIsLoading(true);
+  
     setTimeout(() => {
       timestampRef.current = Date.now();
     fetch(url, opts)
@@ -17,15 +17,20 @@ export const useJsonFetch = (url, opts) => {
       .then((data) => {
         setData(data);
         setError(null);
-        setIsLoading(false);
+        setIsLoading(true);
       })
       .catch((err) => {
         setError(err);
-        setIsLoading(false);
+        setIsLoading(true);
       });
     }, 2000);
   }
   useEffect(loadData, [url, opts]); // componentDidMount
+    useEffect(() => {
+      if (isLoading === true) {
+        clearTimeout(timestampRef.current);
+      }
+    });
 
   return [data, error, isLoading];
 }
