@@ -4,14 +4,14 @@ import "./App.css";
 import { useJsonFetch } from "./hooks/useJsonFetch";
 
 function App() {
-  const [data, error, isLoading] = useJsonFetch("https://usefetchhookback.axareact.ru/data", {
+  const [data, error, isLoading] = useJsonFetch("/data", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   });
   const [data2, error2, isLoading2] = useJsonFetch(
-    "https://usefetchhookback.axareact.ru/error",
+    "/error",
     {
       method: "GET",
       headers: {
@@ -20,7 +20,7 @@ function App() {
     }
   );
   const [data3, error3, isLoading3] = useJsonFetch(
-    "https://usefetchhookback.axareact.ru/loading",
+    "/loading",
     {
       method: "GET",
       headers: {

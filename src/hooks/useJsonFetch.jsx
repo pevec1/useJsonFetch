@@ -1,36 +1,24 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 
 export const useJsonFetch = (url, opts) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-const timestampRef = useRef(0);
-
-  function loadData(){
-     timestampRef.current = Date.now();
-  
-    setTimeout(() => {
-     fetch(url, opts)
+  const [isLoading, setIsLoading] = useState(true);
+//const timestampRef = useRef(0);
+    // eslint-disable-next-line no-undef
+    fetch(import.meta.env.VITE_API_BASE_URL + url, opts)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setData(data);
         setError(null);
-        setIsLoading(true);
+        setIsLoading(false);
       })
       .catch((err) => {
         setError(err);
         setIsLoading(true);
       });
-    }, 2000);
-  }
-  useEffect(loadData, [url, opts]); // componentDidMount
-    useEffect(() => {
-      if (isLoading === true) {
-        clearTimeout(timestampRef.current);
-      }
-    });
 
   return [data, error, isLoading];
 }
